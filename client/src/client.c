@@ -1,5 +1,7 @@
 #include "client.h"
 
+
+
 int main(void)
 {
 	/*---------------------------------------------------PARTE 2-------------------------------------------------------------*/
@@ -15,15 +17,11 @@ int main(void)
 	/* ---------------- LOGGING ---------------- */
 
 	logger = iniciar_logger();
-	//log_info(logger,"hola soy el puto log");
-	// Usando el logger creado previamente
-	// Escribi: "Hola! Soy un log"
 
 
 	/* ---------------- ARCHIVOS DE CONFIGURACION ---------------- */
 
 	config = iniciar_config();
-	//config_get_string_value(config,"CLAVE");
 	log_info(logger,config_get_string_value(config,"CLAVE"));
 	// Usando el config creado previamente, leemos los valores del config y los 
 	// dejamos en las variables 'ip', 'puerto' y 'valor'
@@ -40,14 +38,14 @@ int main(void)
 	// ADVERTENCIA: Antes de continuar, tenemos que asegurarnos que el servidor esté corriendo para poder conectarnos a él
 
 	// Creamos una conexión hacia el servidor
-	conexion = crear_conexion(ip, puerto);
+	//conexion = crear_conexion(ip, puerto);
 
 	// Enviamos al servidor el valor de CLAVE como mensaje
 
 	// Armamos y enviamos el paquete
-	paquete(conexion);
+	//paquete(conexion);
 
-	terminar_programa(conexion, logger, config);
+	//terminar_programa(conexion, logger, config);
 
 	/*---------------------------------------------------PARTE 5-------------------------------------------------------------*/
 	// Proximamente
@@ -75,12 +73,20 @@ void leer_consola(t_log* logger)
 
 	// La primera te la dejo de yapa
 	leido = readline("> ");
-
+	log_info(logger,leido);
 	// El resto, las vamos leyendo y logueando hasta recibir un string vacío
-
-
+	while (strcmp(leido,"")!=0&&leido!=NULL)
+	{
+		leido = readline("> ");
+		log_info(logger,leido);
+		free;
+	}
+	if (leido != NULL) {
+        free(leido);
+    }
+	
 	// ¡No te olvides de liberar las lineas antes de regresar!
-
+	
 }
 
 void paquete(int conexion)
